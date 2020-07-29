@@ -1,0 +1,71 @@
+<div class="my-bg">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+
+        <a class="navbar-brand" href="index.html">Issue Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active ">
+                    <a class="nav-link" [routerLink]="['/signup']">SignUp</a>
+                </li>
+            </ul>
+        </div>
+        </nav>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-6 col-md-6 box text-truncate">
+            <div class="card p-3">
+                <div class="card-header bg-dark">
+                    <h4 class="text" style="font-family: cursive; color: blanchedalmond; text-emphasis: position;">Edit Your Issue </h4>
+                </div>
+                <div class="card-body">
+                    <form #createForm="ngForm">
+                            <div class = "container-fluid">
+                            <label for="issue-title" style="font-family: cursive; font-size: 30px; color: rgb(27, 17, 3); text-emphasis: position;">
+                                Give The Title   </label>  <br>
+                            <input id="issue-title" type="text" class="form-control" 
+                                [(ngModel)]="title" name="title" required>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                            <label for = "allStatus" class = "input-group ml-3" style="font-family: cursive; font-size: 30px; color: rgb(27, 17, 3); text-emphasis: position;">Status</label>
+                                <select id="allStatus" class="btn btn-info dropdown-toggle"
+                                    [(ngModel)]="selectedStatus" name="statusSelected">
+                                    <option *ngFor="let status of statusOptions" [value]="status"
+                                        class="text-white bg-dark">{{status}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="issue-description" style="font-family: cursive; font-size: 30px; color: rgb(27, 17, 3); text-emphasis: position;">Description</label>
+                             <textarea id="issue-description" class="form-control form-control-md"
+                                [(ngModel)]="description" name="description"></textarea> 
+                            <angular-editor [config]="editorConfig" [(ngModel)]="description" name="description" aria-required="true">
+                            </angular-editor> 
+                        </div>
+                        <div class="dropdown" aria-describedby="dropdown-help">
+                            <button class="btn dropdown-toggle btn-outline-secondary" type="button"
+                                data-toggle="dropdown" id="assignee-dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                {{dropdownSelected}}
+                            </button>
+                        </div>
+                        <small id="dropdown-help" class="text-muted">assign</small>
+                    </form>
+                </div>
+                <div class="card-footer dropdown-help">
+                    <div class="row justify-content-between">
+                        <button class="btn btn-secondary" (click)="navigateBack()">Back</button>
+                        <button class="btn btn-primary" (click)="editIssue()">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

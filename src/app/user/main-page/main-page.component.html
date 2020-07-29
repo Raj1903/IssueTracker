@@ -1,0 +1,85 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">  
+    <a class="navbar-brand" href="index.html">To-Do-List</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" [routerLink]="['/login']">Login</a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+<div class="container-fluid my-bg">
+    <div class="row">
+                <div class="col-md-5 col-sm-6 offset-sm-3 col-6 offset-3  box text-truncate">
+                   <h3 class="margin-top-10 margin-bottom-10 margin-left-10 margin-right-10"  style="font-size: 20px; font-style: italic;  font: outline; color: whitesmoke;" >Enter Your Credentials</h3>
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1 col-sm-6 offset-sm-3" style=" overflow: hidden;">
+                    <form #signupform="ngForm" >
+                            <div class = "row">
+                            <div class = col-md-6>
+                            <label for="firstName" class="sr-only">firstName</label>
+                            <input id="firstName" type="text" class="form-control" [(ngModel)]="firstName" 
+                            name="firstName" placeholder="FirstName" style="color:rgb(37, 109, 8)" position = "center" #SUfirstName="ngModel" required>
+                        <div [hidden]="SUfirstName.valid || SUfirstName.pristine" class="alert alert-danger">
+                                Please Enter your FirstName
+                               </div>
+                            </div>
+                            <div class="col-md-6">
+                            <label for="lastName" class="sr-only">lastName</label>
+                            <input id="lastName" type="text" class="form-control" [(ngModel)]="lastName" 
+                            name="lastName" placeholder="LastName" #SUlastName="ngModel" required>
+                        <div [hidden]="SUlastName.valid || SUlastName.pristine" class="alert alert-danger">
+                                Please Enter Your LastName 
+                               </div>
+                               </div>
+                            </div>
+                            <br>
+                            <div class = "row">
+                                <div class = col-md-6>
+                            <label for="email" class="sr-only">Email</label>
+                            <input id="email" type="email" class="form-control" [(ngModel)]="emailId"
+                            name="emailId" placeholder="Email" #SUemail="ngModel" required>
+                        <div [hidden]="SUemail.valid || SUemail.pristine" class="alert alert-danger">
+                                Please Enter Your Email Id 
+                               </div>
+                            </div>
+                            </div>
+                                <br>
+                                <br>
+                                <div class = "row">
+                                <div class = col-md-6>
+                            <label for="mobileNumber" class="sr-only">mobileNumber</label>
+                            <input type="number" id="mobileNumber" class="form-control" [(ngModel)]="mobileNumber"
+                            name="mobileNumber" placeholder="MobileNumber" #SUmobileNumber="ngModel" required>
+                        <div [hidden]="SUmobileNumber.valid || SUmobileNumber.pristine" class="alert alert-danger">
+                                Please Enter Your MobileNumber
+                               </div>
+                               </div>
+                               <br>
+                               <br>
+                               <br>
+                            </div> 
+                            <div class = "row">
+                                <div class = "col-md-6">
+                            <label for="password" class="sr-only">password</label>
+                            <input id="password" type="password" class="form-control" [(ngModel)]="password"
+                            name="password" placeholder="Password" #SUpassword="ngModel" required>
+                        <div [hidden]="SUpassword.valid || SUpassword.pristine" class="alert alert-danger">
+                                Enter Your Unique Password 
+                               </div>
+                               </div>
+                               </div>
+                               <br>
+                               <br>
+                        <button class="btn btn-primary btn-block" [disabled]="!signupform.valid" (click)="signUpFunction()">SignUp</button>
+                    </form>   
+            </div>
+                </div>
+            </div>
+        </div>

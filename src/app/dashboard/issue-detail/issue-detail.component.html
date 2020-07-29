@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <div class="row ">
+        <!-- column-1 -->
+        <div class="col-md-6">
+            <h3 class="text-info text-center">Issue Detail</h3>
+            <div *ngIf="issueDetail" class="border p-1 bg-secondary rounded text-white">
+                <div class="row no-gutters ml-md-5 text-justify">
+                    <cite class="font-weight-light">Title : </cite>
+                    <p class="ml-1">{{issueDetail?.title}}</p>
+                </div>
+                <div class="row no-gutters ml-md-5 text-justify">
+                    <cite class="font-weight-light">Status : </cite>
+                    <p class="ml-1">{{issueDetail?.status}}</p>
+                </div>
+                <div class="row no-gutters ml-md-5 text-justify">
+                    <cite class="font-weight-light">Description : </cite>
+                    <p class="ml-1" [innerHtml]="issueDetail.description" class="text-justify"></p>
+                </div>
+                <div class="row no-gutters ml-md-5 text-justify">
+
+                    <select class="rounded bg-secondary text-white">
+                        <option selected disabled>Assignees</option>
+                        <option *ngFor="let assign of assignee" class="bg-white" disabled>{{assign.assigneeName}}
+                        </option>
+                    </select>
+
+                </div>
+                <div class="row no-gutters ml-md-5 mt-2 text-justify">
+
+                    <select class="rounded bg-secondary text-white">
+                        <option selected disabled>Watchers</option>
+                        <option *ngFor="let watcher of watchers" class="bg-white" disabled>{{watcher.watcherName}}
+                        </option>
+                    </select>
+
+                </div>
+                <div class="row no-gutters ml-md-5 mt-1 text-justify">
+                    <cite class="font-weight-light">Reporter : </cite>
+                    <p class="ml-1">{{issueDetail?.reporter.reporterName}}</p>
+                </div>
+                <div class="row no-gutters ml-md-5 text-justify">
+                    <cite class="font-weight-light">ReportedOn : </cite>
+                    <p class="ml-1">{{issueDetail?.createdOn |date}}</p>
+                </div>
+                <div class="row no-gutters justify-content-between">
+                    <button class="btn btn-dark text-white" (click)="navigateBack()">Back</button>
+                    <button *ngIf="issueDetail.watchingStatus==='watch'" class="btn btn-primary text-white" (click)="watchIssue()">Watch</button>
+                    <button *ngIf="issueDetail.watchingStatus==='watching'" class="btn btn-success text-white">Watching</button>
+                    <button class="btn btn-primary text-white"
+                        [routerLink]="['/issue',issueDetail.issueId,'edit']">Edit</button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <!-- end of column-1 -->
+
+        <!-- column-2 -->
+        <div class="col-md-4 offset-md-2 mt-3">
+            <div class="form-group ">
+                <label for="comments" class="sr-only">Comments</label>
+                <input type="text" id="comments" class="form-control" placeholder="comment..."
+                    (keydown)="addCommentByKeyPress($event)" [(ngModel)]="newComment" name="newComment">
+            </div>
+            <div *ngIf="comments.length>0" id="list-comment" class="border border-secondary rounded mb-1">
+                <ul class="list-group " *ngFor="let comment of comments">
+                    <li class="list-group-item text-justify text-info">
+                        {{comment.comment}}<br>
+                        <small class="d-block text-right text-muted">{{comment.commenterName}}</small>
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="comments.length===0">
+                <p class="text-muted">No comments added</p>
+            </div>
+        </div>
+    </div>
+</div>
