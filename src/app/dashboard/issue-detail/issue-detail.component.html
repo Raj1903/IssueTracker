@@ -1,31 +1,49 @@
+<div class="my-bg">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+
+        <a class="navbar-brand" href="index.html">Issue Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active ">
+                    <a class="nav-link" [routerLink]="['/create']">Create</a>
+                </li>
+            </ul>
+        </div>
+        </nav>
 <div class="container-fluid">
     <div class="row ">
         <!-- column-1 -->
         <div class="col-md-6">
-            <h3 class="text-info text-center">Issue Detail</h3>
+            <h3 class="text" style="font-family: cursive; color: blanchedalmond; text-emphasis: position;">Issue Detail</h3>
             <div *ngIf="issueDetail" class="border p-1 bg-secondary rounded text-white">
-                <div class="row no-gutters ml-md-5 text-justify">
-                    <cite class="font-weight-light">Title : </cite>
+                <div class="row">
+                    <cite class=text style="font-family: cursive; color: blanchedalmond; text-emphasis: position;">Title : </cite>
                     <p class="ml-1">{{issueDetail?.title}}</p>
                 </div>
-                <div class="row no-gutters ml-md-5 text-justify">
-                    <cite class="font-weight-light">Status : </cite>
+                <div class="row">
+                    <cite class="text" style="font-family: cursive; color: blanchedalmond; text-emphasis: position;">Status : </cite>
                     <p class="ml-1">{{issueDetail?.status}}</p>
                 </div>
-                <div class="row no-gutters ml-md-5 text-justify">
-                    <cite class="font-weight-light">Description : </cite>
+                <div class="row ">
+                    <cite class="text" style="font-family: cursive; color: blanchedalmond; text-emphasis: position;">Description : </cite>
                     <p class="ml-1" [innerHtml]="issueDetail.description" class="text-justify"></p>
                 </div>
-                <div class="row no-gutters ml-md-5 text-justify">
+                <div class="row ">
 
                     <select class="rounded bg-secondary text-white">
                         <option selected disabled>Assignees</option>
-                        <option *ngFor="let assign of assignee" class="bg-white" disabled>{{assign.assigneeName}}
+                        <option *ngFor="let assign of assignee"  disabled>{{assign.assigneeName}}
                         </option>
                     </select>
-
+                    
                 </div>
-                <div class="row no-gutters ml-md-5 mt-2 text-justify">
+                <div class="row text-justify">
 
                     <select class="rounded bg-secondary text-white">
                         <option selected disabled>Watchers</option>
@@ -34,11 +52,11 @@
                     </select>
 
                 </div>
-                <div class="row no-gutters ml-md-5 mt-1 text-justify">
+                <div class="row  text-justify">
                     <cite class="font-weight-light">Reporter : </cite>
                     <p class="ml-1">{{issueDetail?.reporter.reporterName}}</p>
                 </div>
-                <div class="row no-gutters ml-md-5 text-justify">
+                <div class="row text-justify">
                     <cite class="font-weight-light">ReportedOn : </cite>
                     <p class="ml-1">{{issueDetail?.createdOn |date}}</p>
                 </div>
@@ -60,7 +78,7 @@
         <!-- column-2 -->
         <div class="col-md-4 offset-md-2 mt-3">
             <div class="form-group ">
-                <label for="comments" class="sr-only">Comments</label>
+                <label for="comments">Comment</label>
                 <input type="text" id="comments" class="form-control" placeholder="comment..."
                     (keydown)="addCommentByKeyPress($event)" [(ngModel)]="newComment" name="newComment">
             </div>
@@ -73,7 +91,7 @@
                 </ul>
             </div>
             <div *ngIf="comments.length===0">
-                <p class="text-muted">No comments added</p>
+                <p class="text-muted">Comments not added</p>
             </div>
         </div>
     </div>
